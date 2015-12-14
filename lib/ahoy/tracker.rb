@@ -15,7 +15,7 @@ module Ahoy
       else
         options = options.dup
 
-        options[:time] = trusted_time(options[:time])
+        options[:time] = options[:time] && options[:trust_time] ? options[:time] : trusted_time(options[:time])
         options[:id] = ensure_uuid(options[:id] || generate_id)
 
         @store.track_event(name, properties, options)
